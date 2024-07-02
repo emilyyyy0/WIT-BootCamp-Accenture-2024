@@ -27,7 +27,7 @@ if not os.path.exists(CACHE_DIR):
 
 def get_cached_image(text):
     """Check if an image for the given text exists in the local cache."""
-    filename = f"{CACHE_DIR}/{text.lower()}.pngig"
+    filename = f"{CACHE_DIR}/{text.lower()}.png"
     # filename = f"{CACHE_DIR}/{base64.b64encode(text.encode()).decode()}.png"
     if os.path.exists(filename):
         with open(filename, "rb") as f:
