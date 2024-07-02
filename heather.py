@@ -1,12 +1,11 @@
 import os
 import json
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, send_from_directory
 from PIL import Image
-import requests
 import base64
 import io
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='frontend/build', static_url_path='/')
 
 # Mock Amplify for local testing
 class MockAmplify:
@@ -28,7 +27,6 @@ if not os.path.exists(CACHE_DIR):
 def get_cached_image(text):
     """Check if an image for the given text exists in the local cache."""
     filename = f"{CACHE_DIR}/{text.lower()}.png"
-    # filename = f"{CACHE_DIR}/{base64.b64encode(text.encode()).decode()}.png"
     if os.path.exists(filename):
         with open(filename, "rb") as f:
             return base64.b64encode(f.read()).decode()
@@ -36,9 +34,7 @@ def get_cached_image(text):
 
 def save_to_cache(text, image_data):
     """Save the generated image to the local cache."""
-    if not os.path.exists(CACHE_DIR):
-        os.makedirs(CACHE_DIR)
-    filename = f"{CACHE_DIR}/{base64.b64encode(text.encode()).decode()}.png"
+    filename = f"{CACHE_DIR}/{text.lower()}.png"
     with open(filename, "wb") as f:
         f.write(base64.b64decode(image_data))
 
@@ -52,7 +48,7 @@ def generate_image(text):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return send_from_directory(app.static_folder, 'index.html')
 
 @app.route("/get_image", methods=["POST"])
 def get_image():
@@ -74,6 +70,10 @@ def get_image():
         return jsonify({"image": generated_image, "source": "api"})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+@app.route('/<path:path>')
+def static_proxy(path):
+    return send_from_directory(app.static_folder, path)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
