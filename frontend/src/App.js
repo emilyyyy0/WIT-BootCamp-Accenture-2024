@@ -1,26 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import HoverMenu from './components/HoverMenu';
+import TextInput from './components/TextInput';
+import VerticalMenu from './components/VerticalMenu';
+import Sidebar from './components/Sidebar';
 
 function App() {
-  const [text, setText] = useState('');
   const [image, setImage] = useState(null);
   const [source, setSource] = useState('');
-
-  useEffect(() => {
-    const handleSelectionChange = () => {
-      const selectedText = window.getSelection().toString();
-      setText(selectedText);
-    };
-
-    document.addEventListener('selectionchange', handleSelectionChange);
-
-    return () => {
-      document.removeEventListener('selectionchange', handleSelectionChange);
-    };
-  }, []);
+  const [userText, setUserText] = useState('');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const generateImage = async () => {
-    if (!text) {
+    const selectedText = window.getSelection().toString();
+    if (!selectedText) {
       alert('Please select some text to generate an image.');
       return;
     }
@@ -30,7 +23,7 @@ function App() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ text }),
+      body: JSON.stringify({ text: selectedText }),
     });
     const data = await response.json();
     if (data.error) {
@@ -41,11 +34,37 @@ function App() {
     }
   };
 
+  const textToSpeech = () => {
+    const selectedText = window.getSelection().toString();
+    if (selectedText) {
+      const utterance = new SpeechSynthesisUtterance(selectedText);
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
+  const handleTextSubmit = (text) => {
+    setUserText(text);
+  };
+
+  const handleMenuClick = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
-    <div className="App">
-      <h1>Image Generator</h1>
-      <p id="plainText">A young dragon dreams of going to dragon school but first he must find his lost bell. Another great decodable reader from BookBot.</p>
-      <button onClick={generateImage} disabled={!text}>Generate Image</button>
+    <div className="App flex flex-col items-center justify-start h-screen text-center">
+      <Sidebar isOpen={isSidebarOpen} />
+      <VerticalMenu onMenuClick={handleMenuClick} />
+      <h1 className="text-6xl font-bold my-8">Wonder Sprouts</h1>
+      <div className="w-full flex flex-col items-center justify-center">
+        <TextInput onTextSubmit={handleTextSubmit} />
+        {userText && (
+          <div className="flex items-center justify-center w-full mt-8">
+            <HoverMenu onGenerateImage={generateImage} onTextToSpeech={textToSpeech}>
+              <p className="text-2xl font-semibold">{userText}</p>
+            </HoverMenu>
+          </div>
+        )}
+      </div>
       <div id="result">
         {image && (
           <>
