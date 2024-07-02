@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
-import HoverMenu from './HoverMenu';
+import HoverMenu from './components/HoverMenu';
 
 function App() {
   const [image, setImage] = useState(null);
