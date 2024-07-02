@@ -1,26 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import HoverMenu from './HoverMenu';
 
 function App() {
-  const [text, setText] = useState('');
   const [image, setImage] = useState(null);
   const [source, setSource] = useState('');
 
-  useEffect(() => {
-    const handleSelectionChange = () => {
-      const selectedText = window.getSelection().toString();
-      setText(selectedText);
-    };
-
-    document.addEventListener('selectionchange', handleSelectionChange);
-
-    return () => {
-      document.removeEventListener('selectionchange', handleSelectionChange);
-    };
-  }, []);
-
   const generateImage = async () => {
-    if (!text) {
+    const selectedText = window.getSelection().toString();
+    if (!selectedText) {
       alert('Please select some text to generate an image.');
       return;
     }
@@ -30,7 +18,7 @@ function App() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ text }),
+      body: JSON.stringify({ text: selectedText }),
     });
     const data = await response.json();
     if (data.error) {
@@ -41,11 +29,22 @@ function App() {
     }
   };
 
+  const textToSpeech = () => {
+    const selectedText = window.getSelection().toString();
+    if (selectedText) {
+      const utterance = new SpeechSynthesisUtterance(selectedText);
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
   return (
     <div className="App">
-      <h1>Image Generator</h1>
-      <p id="plainText">A young dragon dreams of going to dragon school but first he must find his lost bell. Another great decodable reader from BookBot.</p>
-      <button onClick={generateImage} disabled={!text}>Generate Image</button>
+      <h1>Wonder Sprouts</h1>
+      <HoverMenu onGenerateImage={generateImage} onTextToSpeech={textToSpeech}>
+        <p id="plainText">
+          A young dragon dreams of going to dragon school but first he must find his lost bell. Another great decodable reader from BookBot.
+        </p>
+      </HoverMenu>
       <div id="result">
         {image && (
           <>
