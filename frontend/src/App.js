@@ -3,11 +3,13 @@ import './App.css';
 import HoverMenu from './components/HoverMenu';
 import TextInput from './components/TextInput';
 import VerticalMenu from './components/VerticalMenu';
+import Sidebar from './components/Sidebar';
 
 function App() {
   const [image, setImage] = useState(null);
   const [source, setSource] = useState('');
   const [userText, setUserText] = useState('');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const generateImage = async () => {
     const selectedText = window.getSelection().toString();
@@ -44,16 +46,23 @@ function App() {
     setUserText(text);
   };
 
+  const handleMenuClick = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
   return (
     <div className="App flex flex-col items-center justify-start h-screen text-center">
-      <VerticalMenu />
+      <Sidebar isOpen={isSidebarOpen} />
+      <VerticalMenu onMenuClick={handleMenuClick} />
       <h1 className="text-6xl font-bold my-8">Wonder Sprouts</h1>
       <div className="w-full flex flex-col items-center justify-center">
         <TextInput onTextSubmit={handleTextSubmit} />
         {userText && (
-          <HoverMenu onGenerateImage={generateImage} onTextToSpeech={textToSpeech}>
-            <p className="text-2xl font-semibold">{userText}</p>
-          </HoverMenu>
+          <div className="flex items-center justify-center w-full mt-8">
+            <HoverMenu onGenerateImage={generateImage} onTextToSpeech={textToSpeech}>
+              <p className="text-2xl font-semibold">{userText}</p>
+            </HoverMenu>
+          </div>
         )}
       </div>
       <div id="result">
