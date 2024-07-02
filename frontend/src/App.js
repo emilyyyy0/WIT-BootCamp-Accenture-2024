@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
@@ -6,15 +6,31 @@ function App() {
   const [image, setImage] = useState(null);
   const [source, setSource] = useState('');
 
-  
+  useEffect(() => {
+    const handleSelectionChange = () => {
+      const selectedText = window.getSelection().toString();
+      setText(selectedText);
+    };
+
+    document.addEventListener('selectionchange', handleSelectionChange);
+
+    return () => {
+      document.removeEventListener('selectionchange', handleSelectionChange);
+    };
+  }, []);
 
   const generateImage = async () => {
+    if (!text) {
+      alert('Please select some text to generate an image.');
+      return;
+    }
+
     const response = await fetch('/get_image', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ text })
+      body: JSON.stringify({ text }),
     });
     const data = await response.json();
     if (data.error) {
@@ -27,27 +43,14 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Generate Image</h1>
+      <h1>Image Generator</h1>
       <p id="plainText">A young dragon dreams of going to dragon school but first he must find his lost bell. Another great decodable reader from BookBot.</p>
-      <div className="form-group">
-        <label htmlFor="text">Enter Text:</label>
-        <input
-          type="text"
-          id="text"
-          name="text"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-      </div>
-      <h3> She is eating a dragon!</h3>
-      <button onClick={generateImage}>Generate</button>
-      <button>test</button>
-
-      <div id="image-container">
+      <button onClick={generateImage} disabled={!text}>Generate Image</button>
+      <div id="result">
         {image && (
           <>
+            <img src={`data:image/png;base64,${image}`} alt="Generated Image" />
             <p>Source: {source}</p>
-            <img src={`data:image/png;base64,${image}`} alt="Generated" />
           </>
         )}
       </div>
