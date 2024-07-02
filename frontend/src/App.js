@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import './App.css';
 import HoverMenu from './components/HoverMenu';
+import TextInput from './components/TextInput';
 
 function App() {
   const [image, setImage] = useState(null);
   const [source, setSource] = useState('');
+  const [userText, setUserText] = useState('');
+
 
   const generateImage = async () => {
     const selectedText = window.getSelection().toString();
@@ -37,14 +40,31 @@ function App() {
     }
   };
 
+  const handleTextSubmit = (text) => {
+    setUserText(text);
+  };
+
+  const contentStyle = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexGrow: 1, // Make content take available space
+  };
+
+
+
   return (
     <div className="App">
       <h1>Wonder Sprouts</h1>
-      <HoverMenu onGenerateImage={generateImage} onTextToSpeech={textToSpeech}>
-        <p id="plainText">
-          A young dragon dreams of going to dragon school but first he must find his lost bell. Another great decodable reader from BookBot.
-        </p>
-      </HoverMenu>
+      <div style={contentStyle}>
+        <TextInput onTextSubmit={handleTextSubmit} />
+        {userText && (
+          <HoverMenu onGenerateImage={generateImage} onTextToSpeech={textToSpeech}>
+            <p>{userText}</p>
+          </HoverMenu>
+        )}
+      </div>
       <div id="result">
         {image && (
           <>
