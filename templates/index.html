@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Generator</title>
+</head>
+<body>
+    <h1>Image Generator</h1>
+    <p id="plainText">A young dragon dreams of going to dragon school but first he must find his lost bell. Another great decodable reader from BookBot.</p>
+    <button id="generateButton" onclick="getImage()">Generate Image</button>
+    <div id="result"></div>
+
+    <script>
+    function getSelectedText() {
+        let selectedText = "";
+        if (window.getSelection) {
+            selectedText = window.getSelection().toString();
+        } else if (document.selection && document.selection.type != "Control") {
+            selectedText = document.selection.createRange().text;
+        }
+        return selectedText;
+    }
+
+    function getImage() {
+        var text = getSelectedText();
+        var resultDiv = document.getElementById("result");
+        var generateButton = document.getElementById("generateButton");
+
+        if (!text) {
+            resultDiv.innerHTML = "<p>Please select some text to generate an image.</p>";
+            return;
+        }
+
+        //resultDiv.innerHTML = "<p>Image generated for text: " + text + "</p>";
+        
+        fetch("/get_image", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ text: text })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.image) {
+                resultDiv.innerHTML = `<img src="data:image/png;base64,${data.image}" alt="Generated Image"><p>Source: ${data.source}</p>`;
+            } else {
+                resultDiv.innerHTML = `<p>Error: ${data.error}</p>`;
+            }
+        })
+        .catch(error => {
+            resultDiv.innerHTML = `<p>Error: ${error.message}</p>`;
+        });
+    }
+
+    // Add an event listener to enable the button when text is selected
+    document.addEventListener('selectionchange', function() {
+        var text = getSelectedText();
+        var generateButton = document.getElementById("generateButton");
+        generateButton.disabled = !text;
+    });
+
+    // function getImage() {
+    //     const text = document.getElementById('textInput').value;
+    //     fetch('/get_image', {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({text: text}),
+    //     })
+    //     .then(response => response.json())
+    //     .then(data => {
+    //         const resultDiv = document.getElementById('result');
+    //         if (data.image) {
+    //             resultDiv.innerHTML = `<p>Source: ${data.source}</p><img src="data:image/png;base64,${data.image}" alt="Generated Image">`;
+    //         } else {
+    //             resultDiv.innerHTML = `<p>Error: ${data.error}</p>`;
+    //         }
+    //     });
+    // }
+    </script>
+</body>
+</html>
