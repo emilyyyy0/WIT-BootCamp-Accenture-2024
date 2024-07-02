@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import './App.css';
 import HoverMenu from './components/HoverMenu';
 import TextInput from './components/TextInput';
+import VerticalMenu from './components/VerticalMenu';
 
 function App() {
   const [image, setImage] = useState(null);
   const [source, setSource] = useState('');
   const [userText, setUserText] = useState('');
-
 
   const generateImage = async () => {
     const selectedText = window.getSelection().toString();
@@ -44,24 +44,15 @@ function App() {
     setUserText(text);
   };
 
-  const contentStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexGrow: 1, // Make content take available space
-  };
-
-
-
   return (
-    <div className="App">
-      <h1>Wonder Sprouts</h1>
-      <div style={contentStyle}>
+    <div className="App flex flex-col items-center justify-start h-screen text-center">
+      <VerticalMenu />
+      <h1 className="text-6xl font-bold my-8">Wonder Sprouts</h1>
+      <div className="w-full flex flex-col items-center justify-center">
         <TextInput onTextSubmit={handleTextSubmit} />
         {userText && (
           <HoverMenu onGenerateImage={generateImage} onTextToSpeech={textToSpeech}>
-            <p>{userText}</p>
+            <p className="text-2xl font-semibold">{userText}</p>
           </HoverMenu>
         )}
       </div>

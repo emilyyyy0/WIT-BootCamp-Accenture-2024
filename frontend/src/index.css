@@ -41,3 +41,9 @@ button:hover {
   max-width: 100%;
   height: auto;
 }
+
+
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
