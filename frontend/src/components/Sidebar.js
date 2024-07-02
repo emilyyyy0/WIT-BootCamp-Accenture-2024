@@ -1,4 +1,4 @@
-// components/Sidebar.js
+// components/Sidebar.js that pops out when hamburger menu is pressed
 import React from 'react';
 
 const Sidebar = ({ isOpen }) => {
