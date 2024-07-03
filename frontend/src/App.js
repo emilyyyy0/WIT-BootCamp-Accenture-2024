@@ -7,8 +7,8 @@ import VerticalMenu from './components/VerticalMenu';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
 import LearningModule from './components/LearningModule';
-import RightSidebar from './components/RightSidebar'; // Import RightSidebar
-import Bell from './components/Bell'; // Import BellIcon
+import RightSidebar from './components/RightSidebar';
+import Bell from './components/Bell';
 
 function App() {
   const [image, setImage] = useState(null);
@@ -64,8 +64,8 @@ function App() {
       <div className="App flex flex-col items-center justify-start bg-customLightGreen h-screen text-center">
         <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
         <VerticalMenu onMenuClick={handleMenuClick} />
-        <RightSidebar /> {/* Add RightSidebar here */}
-        <Bell /> {/* Add Bell Icon here */}
+        <RightSidebar />
+        <Bell />
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/learningmodule" element={<LearningModule />} />
@@ -77,18 +77,18 @@ function App() {
                   <TextInput onTextSubmit={handleTextSubmit} />
                 ) : (
                   <div className="centered-text-box">
+                    {image && (
+                      <div className="image-container">
+                        <img src={`data:image/png;base64,${image}`} alt="Generated Image" className="generated-image" />
+                      </div>
+                    )}
                     <HoverMenu onGenerateImage={generateImage} onTextToSpeech={textToSpeech}>
                       <p className="text-2xl font-semibold">{userText}</p>
                     </HoverMenu>
+                    {image && (
+                      <p className="image-source">Source: {source}</p>
+                    )}
                   </div>
-                )}
-              </div>
-              <div id="result">
-                {image && (
-                  <>
-                    <img src={`data:image/png;base64,${image}`} alt="Generated Image" />
-                    <p>Source: {source}</p>
-                  </>
                 )}
               </div>
             </>
