@@ -198,7 +198,7 @@ const LearningModule = () => {
               className="w-10 h-10"
             />
           </button>
-          <h1 className="text-5xl font-bold text-purple-600 animate-bounce">Learning Module</h1>
+          <h1 className="text-5xl font-bold text-black animate-bounce">Learning Module</h1>
           <div className="w-10 h-10"></div>
         </div>
         <header className="flex items-center mb-6">
@@ -208,10 +208,10 @@ const LearningModule = () => {
             className="w-15 h-15 mr-4"
           />
 
-          <h1 className="text-4xl font-semibold text-green-600">Hi Theodore</h1>
+          <h1 className="text-4xl font-semibold text-black">Hi Theodore</h1>
         </header>
 
-        <h2 className="text-2xl font-medium mb-4 text-orange-600 text-left">Keep Working!</h2>
+        <h2 className="text-2xl font-medium mb-4 text-gray-500 text-left">Keep Working!</h2>
 
         <div className="grid grid-cols-3 gap-4 mb-6">
           <Card>
@@ -243,7 +243,7 @@ const LearningModule = () => {
           </Card>
         </div>
 
-        <h2 className="text-2xl font-medium mb-4 text-orange-600 text-left">Words ~</h2>
+        <h2 className="text-2xl font-medium mb-4 text-gray-500 text-left">Words ~</h2>
 
         <div className="grid grid-cols-5 gap-4 mb-6">
           <Card>
@@ -293,7 +293,7 @@ const LearningModule = () => {
           </Card>
         </div>
 
-        <h2 className="text-2xl font-medium mb-4 text-orange-600 text-left">Numbers ~</h2>
+        <h2 className="text-2xl font-medium mb-4 text-gray-500 text-left">Numbers ~</h2>
 
         <div className="grid grid-cols-5 gap-4">
           <Card>

@@ -31,7 +31,7 @@ const Dashboard = () => {
               className="w-10 h-10"
             />
           </button>
-          <h1 className="text-5xl font-bold text-purple-600 animate-bounce">Dashboard</h1>
+          <h1 className="text-5xl font-bold text-black animate-bounce">Dashboard</h1>
           <div className="w-10 h-10"></div>
         </div>
 
@@ -41,19 +41,19 @@ const Dashboard = () => {
             alt="Theodore"
             className="w-20 h-20 mr-4"
           />
-          <h2 className="text-4xl font-semibold text-green-600">Hello Theodore</h2>
+          <h2 className="text-4xl font-semibold text-black-600">Hello Theodore</h2>
         </div>
 
         <div className="flex flex-wrap">
           <div className="flex flex-col w-full md:w-2/5 p-2">
-            <h2 className="text-3xl font-medium mb-4 bg-transparent text-orange-500">Your veggie patch</h2>
+            <h2 className="text-3xl font-medium mb-4 bg-transparent text-gray-500">Your veggie patch</h2>
             <div className="flex-1 bg-white rounded-lg shadow-lg overflow-hidden flex items-center justify-center">
               <img src="/images/veggie-patch.png" alt="Veggie Patch" className="w-full h-auto object-cover" />
             </div>
           </div>
 
           <div className="flex flex-col w-full md:w-3/5 p-2">
-            <h2 className="text-3xl font-medium mb-4 bg-transparent text-orange-500">Your recent viewed lessons</h2>
+            <h2 className="text-3xl font-medium mb-4 bg-transparent text-gray-500">Your recent viewed lessons</h2>
             <div className="flex-1 grid md:grid-cols-2 gap-4 mb-8">
               <ClickableCard>
                 <img src="/images/recent-view.png" alt="Recent View" className="w-full h-auto object-cover" />
@@ -68,7 +68,7 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <h2 className="text-3xl font-medium mb-4 bg-transparent text-orange-500">This week's work progress</h2>
+            <h2 className="text-3xl font-medium mb-4 bg-transparent text-gray-500">This week's work progress</h2>
             <div className="bg-transparent rounded-lg shadow-lg overflow-hidden">
               <img src="/images/progress.png" alt="Progress" className="w-full h-auto" />
             </div>
