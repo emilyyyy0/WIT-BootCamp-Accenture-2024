@@ -1,0 +1,6 @@
+/* components/TextInput.css */
+.textarea-large::placeholder {
+    font-size: 1.5rem; /* Adjust the size as needed */
+    color: #888; /* Adjust the color as needed */
+}
+  

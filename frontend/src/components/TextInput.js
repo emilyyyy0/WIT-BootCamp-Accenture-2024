@@ -1,30 +1,38 @@
+// components/TextInput.js
 import React, { useState } from 'react';
+import './TextInput.css'; // Import the custom CSS file
 
 const TextInput = ({ onTextSubmit }) => {
-  const [text, setText] = useState('');
+  const [inputText, setInputText] = useState('');
 
-  const handleChange = (event) => {
-    setText(event.target.value);
+  const handleChange = (e) => {
+    setInputText(e.target.value);
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    onTextSubmit(text);
-    setText('');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    onTextSubmit(inputText);
+    setInputText('');
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex items-center justify-center mt-4">
-      <input
-        type="text"
-        value={text}
-        onChange={handleChange}
-        placeholder="Enter text here"
-        className="mr-2 p-3 text-lg border rounded flex-grow"
-      />
-      <button type="submit" className="bg-gray-300 border-none rounded p-3 cursor-pointer text-lg font-medium uppercase">
-        Submit
-      </button>
+    <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto">
+      <div className="flex flex-col items-center w-full">
+        <textarea
+          className="textarea-large appearance-none bg-white border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
+          placeholder="Please enter text"
+          value={inputText}
+          onChange={handleChange}
+          rows="10"
+          style={{ height: '500px', width: '1200px' }} // Adjust the height and width here
+        />
+        <button
+          type="submit"
+          className="mt-4 bg-green-700 hover:bg-green-500 text-white py-2 px-4 rounded"
+        >
+          Submit
+        </button>
+      </div>
     </form>
   );
 };

@@ -8,6 +8,8 @@ import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
 import LearningModule from './components/LearningModule';
 import RightSidebar from './components/RightSidebar'; // Import RightSidebar
+import Bell from './components/Bell'; // Import BellIcon
+
 
 function App() {
   const [image, setImage] = useState(null);
@@ -64,6 +66,7 @@ function App() {
         <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
         <VerticalMenu onMenuClick={handleMenuClick} />
         <RightSidebar /> {/* Add RightSidebar here */}
+        <Bell /> {/* Add Bell Icon here */}
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/learningmodule" element={<LearningModule />} />

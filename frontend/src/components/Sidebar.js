@@ -26,7 +26,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         <li className="py-4">
           <button
             onClick={navigateToDashboard}
-            className="w-full flex items-center justify-center pl-12 py-4 hover:bg-gray-400 focus:outline-none"
+            className="w-full flex items-center justify-center pl-12 py-4 hover:bg-green-100 focus:outline-none"
           >
             <img src="/images/user-icon.png" alt="Dashboard" className="w-14 h-14" />
           </button>
@@ -34,7 +34,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         <li className="py-4">
           <button
             onClick={navigateToLearningModule}
-            className="w-full flex items-center justify-center pl-12 py-4 hover:bg-gray-400 focus:outline-none"
+            className="w-full flex items-center justify-center pl-12 py-4 hover:bg-green-100 focus:outline-none"
           >
             <img src="/images/book-icon.png" alt="Learning Module" style={{ width: '65px', height: '65px' }} />
           </button>
