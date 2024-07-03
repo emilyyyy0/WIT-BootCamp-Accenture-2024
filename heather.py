@@ -45,26 +45,6 @@ def generate_image(text):
 def index():
     return send_from_directory(app.static_folder, 'index.html')
 
-# @app.route("/get_image", methods=["POST"])
-# def get_image():
-#     data = request.json
-#     text = data.get("text")
-
-#     if not text:
-#         return jsonify({"error": "No text provided"}), 400
-
-#     # Check local cache
-#     cached_image = get_cached_image(text)
-#     if cached_image:
-#         return jsonify({"image": cached_image, "source": "cache"})
-
-#     # Generate new image
-#     try:
-#         generated_image = 'image_cache/loading.gif'
-#         with open(generated_image, "rb") as f:
-#             return base64.b64encode(f.read()).decode()
-#     except Exception as e:
-#         return jsonify({"error": str(e)}), 500
 
 @app.route("/get_image", methods=["POST"])
 def get_image():
@@ -101,15 +81,23 @@ if __name__ == "__main__":
     app.run(debug=True, port=5000)
 
 
-      # save_to_cache(text, generated_image)
-        # return jsonify({"image": generated_image, "source": "api"})
-                # generated_image = Amplify.API.post("imageGenerationApi", "/generate", body={"text": text})["image"]
+# @app.route("/get_image", methods=["POST"])
+# def get_image():
+#     data = request.json
+#     text = data.get("text")
 
+#     if not text:
+#         return jsonify({"error": "No text provided"}), 400
 
-                # Mock Amplify for local testing
-# class MockAmplify:
-#     class API:
-#         @staticmethod
-#         def post(api_name, path, body):
-#             # Mock image generation
-#             return {"image": generate_image(body["text"])}
+#     # Check local cache
+#     cached_image = get_cached_image(text)
+#     if cached_image:
+#         return jsonify({"image": cached_image, "source": "cache"})
+
+#     # Generate new image
+#     try:
+#         generated_image = 'image_cache/loading.gif'
+#         with open(generated_image, "rb") as f:
+#             return base64.b64encode(f.read()).decode()
+#     except Exception as e:
+#         return jsonify({"error": str(e)}), 500
