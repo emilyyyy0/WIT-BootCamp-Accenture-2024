@@ -6,6 +6,7 @@ import TextInput from './components/TextInput';
 import VerticalMenu from './components/VerticalMenu';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
+import LearningModule from './components/LearningModule';
 
 function App() {
   const [image, setImage] = useState(null);
@@ -52,13 +53,18 @@ function App() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
   return (
     <Router>
       <div className="App flex flex-col items-center justify-start h-screen text-center">
-        <Sidebar isOpen={isSidebarOpen} />
+        <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
         <VerticalMenu onMenuClick={handleMenuClick} />
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/learningmodule" element={<LearningModule />} />
           <Route path="/" element={
             <>
               <h1 className="text-6xl font-bold my-8">Wonder Sprouts</h1>
