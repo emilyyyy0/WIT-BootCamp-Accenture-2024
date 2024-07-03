@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import HoverMenu from './components/HoverMenu';
 import TextInput from './components/TextInput';
 import VerticalMenu from './components/VerticalMenu';
 import Sidebar from './components/Sidebar';
+import Dashboard from './components/Dashboard';
 
 function App() {
   const [image, setImage] = useState(null);
@@ -51,29 +53,38 @@ function App() {
   };
 
   return (
-    <div className="App flex flex-col items-center justify-start h-screen text-center">
-      <Sidebar isOpen={isSidebarOpen} />
-      <VerticalMenu onMenuClick={handleMenuClick} />
-      <h1 className="text-6xl font-bold my-8">Wonder Sprouts</h1>
-      <div className="w-full flex flex-col items-center justify-center">
-        <TextInput onTextSubmit={handleTextSubmit} />
-        {userText && (
-          <div className="flex items-center justify-center w-full mt-8">
-            <HoverMenu onGenerateImage={generateImage} onTextToSpeech={textToSpeech}>
-              <p className="text-2xl font-semibold">{userText}</p>
-            </HoverMenu>
-          </div>
-        )}
+    <Router>
+      <div className="App flex flex-col items-center justify-start h-screen text-center">
+        <Sidebar isOpen={isSidebarOpen} />
+        <VerticalMenu onMenuClick={handleMenuClick} />
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={
+            <>
+              <h1 className="text-6xl font-bold my-8">Wonder Sprouts</h1>
+              <div className="w-full flex flex-col items-center justify-center">
+                <TextInput onTextSubmit={handleTextSubmit} />
+                {userText && (
+                  <div className="flex items-center justify-center w-full mt-8">
+                    <HoverMenu onGenerateImage={generateImage} onTextToSpeech={textToSpeech}>
+                      <p className="text-2xl font-semibold">{userText}</p>
+                    </HoverMenu>
+                  </div>
+                )}
+              </div>
+              <div id="result">
+                {image && (
+                  <>
+                    <img src={`data:image/png;base64,${image}`} alt="Generated Image" />
+                    <p>Source: {source}</p>
+                  </>
+                )}
+              </div>
+            </>
+          } />
+        </Routes>
       </div>
-      <div id="result">
-        {image && (
-          <>
-            <img src={`data:image/png;base64,${image}`} alt="Generated Image" />
-            <p>Source: {source}</p>
-          </>
-        )}
-      </div>
-    </div>
+    </Router>
   );
 }
 

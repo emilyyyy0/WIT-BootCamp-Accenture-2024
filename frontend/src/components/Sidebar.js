@@ -9,7 +9,7 @@ const Sidebar = ({ isOpen }) => {
       }`}
       style={{ width: '270px', zIndex: '40' }}
     >
-      <ul className="pt-16 pl-8 text-lg">
+      <ul className="pt-16 pl-12 text-lg">
         <li className="py-4"><a href="#">Menu Item 1</a></li>
         <li className="py-4"><a href="#">Menu Item 2</a></li>
         <li className="py-4"><a href="#">Menu Item 3</a></li>
