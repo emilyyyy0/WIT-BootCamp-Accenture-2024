@@ -12,7 +12,6 @@ const Dashboard = () => {
   return (
     <div className="flex flex-col items-center justify-start h-screen pt-10">
 
-        <h1 className="text-4xl font-bold mb-8">Dashboard</h1>
         <div style={{ position: 'absolute', top: '100px', left: '100px', display: 'flex', alignItems: 'center', flexDirection: 'row-reverse'}}> 
           <h2 className="text-5xl font-semibold mb-4">Hello Theodore</h2>
           <img
