@@ -22,18 +22,21 @@ const Sidebar = ({ isOpen, onClose }) => {
       }`}
       style={{ width: '250px', zIndex: '40' }}
     >
-    
       <ul className="pt-16 pl-8 text-lg">
         <li className="py-4">
-          <button onClick={navigateToDashboard} className="flex items-center justify-end space-x-4">
-            <img src="/images/user-icon.png" alt="Dashboard" className="w-8 h-8 mr-2" />
-            Dashboard
+          <button
+            onClick={navigateToDashboard}
+            className="w-full flex items-center justify-center pl-12 py-4 hover:bg-gray-400 focus:outline-none"
+          >
+            <img src="/images/user-icon.png" alt="Dashboard" className="w-14 h-14" />
           </button>
         </li>
         <li className="py-4">
-          <button onClick={navigateToLearningModule} className="flex items-center">
-            <img src="/images/book-icon.png" alt="Learning Module" className="w-8 h-8 mr-2" />
-            Learning Module
+          <button
+            onClick={navigateToLearningModule}
+            className="w-full flex items-center justify-center pl-12 py-4 hover:bg-gray-400 focus:outline-none"
+          >
+            <img src="/images/book-icon.png" alt="Learning Module" style={{ width: '65px', height: '65px' }} />
           </button>
         </li>
       </ul>
