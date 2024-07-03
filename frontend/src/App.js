@@ -12,6 +12,7 @@ import RightSidebar from './components/RightSidebar';
 import Bell from './components/Bell';
 import LoginButton from './components/LoginButton';
 import Login from './components/Login';
+import logo from './logo.png';
 
 function App() {
   const [image, setImage] = useState(null);
@@ -66,6 +67,9 @@ function App() {
         <div className="flex justify-between items-center w-full p-4">
           <div></div>
           <div className="flex items-center space-x-4">
+            <img src={logo} alt="Logo" className="h-12 w-auto" style={{ marginRight: '1200px', marginTop: '10px' }}/> {/* Add the logo image */}
+          </div>
+          <div className="flex items-center space-x-4">
             <Link to="/login">
               <LoginButton />
             </Link>
@@ -81,7 +85,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/" element={
             <>
-              <h1 className="text-6xl font-bold my-8">Wonder Sprouts</h1>
               <div className="centered-container">
                 {!userText ? (
                   <TextInput onTextSubmit={handleTextSubmit} />
