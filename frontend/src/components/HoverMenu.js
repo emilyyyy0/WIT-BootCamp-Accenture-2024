@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const HoverMenu = ({ children, onGenerateImage, onTextToSpeech }) => {
+const HoverMenu = ({ children, onGenerateImage, onTextToSpeech, image }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
   const containerRef = useRef(null);
@@ -29,6 +29,11 @@ const HoverMenu = ({ children, onGenerateImage, onTextToSpeech }) => {
 
   return (
     <div ref={containerRef} className="relative">
+      {image && (
+        <div className="absolute" style={{ top: `${menuPosition.top - 100}px`, left: `${menuPosition.left}px` }}>
+          <img src={`data:image/png;base64,${image}`} alt="Generated" className="w-20 h-auto rounded" />
+        </div>
+      )}
       {isHovering && (
         <div
           className="absolute bg-white p-2 rounded shadow-md flex gap-2 border border-gray-300"

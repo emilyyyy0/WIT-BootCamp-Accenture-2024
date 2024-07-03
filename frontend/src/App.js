@@ -12,7 +12,6 @@ import Bell from './components/Bell';
 
 function App() {
   const [image, setImage] = useState(null);
-  const [source, setSource] = useState('');
   const [userText, setUserText] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -35,7 +34,6 @@ function App() {
       alert(data.error);
     } else {
       setImage(data.image);
-      setSource(data.source);
     }
   };
 
@@ -77,17 +75,9 @@ function App() {
                   <TextInput onTextSubmit={handleTextSubmit} />
                 ) : (
                   <div className="centered-text-box">
-                    {image && (
-                      <div className="image-container">
-                        <img src={`data:image/png;base64,${image}`} alt="Generated Image" className="generated-image" />
-                      </div>
-                    )}
-                    <HoverMenu onGenerateImage={generateImage} onTextToSpeech={textToSpeech}>
+                    <HoverMenu onGenerateImage={generateImage} onTextToSpeech={textToSpeech} image={image}>
                       <p className="text-2xl font-semibold">{userText}</p>
                     </HoverMenu>
-                    {image && (
-                      <p className="image-source">Source: {source}</p>
-                    )}
                   </div>
                 )}
               </div>

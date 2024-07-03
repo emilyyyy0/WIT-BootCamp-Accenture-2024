@@ -16,7 +16,7 @@ const TextInput = ({ onTextSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto">
-      <div className="flex flex-col items-center w-full">
+      <div className="flex flex-col items-center w-full ">
         <textarea
           className="textarea-large appearance-none bg-white border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-green-500"
           placeholder="Please enter text"
