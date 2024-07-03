@@ -36,3 +36,28 @@
     transform: rotate(360deg);
   }
 }
+
+
+.centered-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height to center vertically */
+  width: 100%; /* Full width */
+  flex-direction: column; /* Ensures elements are stacked vertically */
+}
+
+.centered-text-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid green;
+  padding: 20px;
+  background-color: white;
+  width: 1200px; /* Set specific width */
+  height: 500px; /* Set specific height */
+  text-align: left; /* Align text to the left for better readability */
+  font-size: 1.5rem; /* Adjust font size as needed */
+  border-radius: 10px; /* Optional: for rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: add shadow for better visibility */
+}

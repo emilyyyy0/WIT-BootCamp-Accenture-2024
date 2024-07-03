@@ -1,4 +1,3 @@
-// components/TextInput.js
 import React, { useState } from 'react';
 import './TextInput.css'; // Import the custom CSS file
 

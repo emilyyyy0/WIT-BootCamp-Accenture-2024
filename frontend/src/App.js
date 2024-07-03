@@ -10,7 +10,6 @@ import LearningModule from './components/LearningModule';
 import RightSidebar from './components/RightSidebar'; // Import RightSidebar
 import Bell from './components/Bell'; // Import BellIcon
 
-
 function App() {
   const [image, setImage] = useState(null);
   const [source, setSource] = useState('');
@@ -73,10 +72,11 @@ function App() {
           <Route path="/" element={
             <>
               <h1 className="text-6xl font-bold my-8">Wonder Sprouts</h1>
-              <div className="w-full flex flex-col items-center justify-center">
-                <TextInput onTextSubmit={handleTextSubmit} />
-                {userText && (
-                  <div className="flex items-center justify-center w-full mt-8">
+              <div className="centered-container">
+                {!userText ? (
+                  <TextInput onTextSubmit={handleTextSubmit} />
+                ) : (
+                  <div className="centered-text-box">
                     <HoverMenu onGenerateImage={generateImage} onTextToSpeech={textToSpeech}>
                       <p className="text-2xl font-semibold">{userText}</p>
                     </HoverMenu>
