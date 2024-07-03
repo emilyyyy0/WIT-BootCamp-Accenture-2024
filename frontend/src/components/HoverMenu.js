@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-const HoverMenu = ({ children, onGenerateImage, onTextToSpeech, image }) => {
+const HoverMenu = ({ children, onGenerateImage, onTextToSpeech, image, setImage }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [menuPosition, setMenuPosition] = useState({ top: 0, left: 0 });
   const containerRef = useRef(null);
@@ -15,17 +15,18 @@ const HoverMenu = ({ children, onGenerateImage, onTextToSpeech, image }) => {
 
         setMenuPosition({
           top: rect.top - containerRect.top - 40,
-          left: rect.left - containerRect.left
+          left: rect.left - containerRect.left,
         });
         setIsHovering(true);
       } else {
         setIsHovering(false);
+        setImage(null); // Clear the image when the selection is removed
       }
     };
 
     document.addEventListener('selectionchange', handleSelectionChange);
     return () => document.removeEventListener('selectionchange', handleSelectionChange);
-  }, []);
+  }, [setImage]);
 
   return (
     <div ref={containerRef} className="relative">

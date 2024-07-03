@@ -75,7 +75,7 @@ function App() {
                   <TextInput onTextSubmit={handleTextSubmit} />
                 ) : (
                   <div className="centered-text-box">
-                    <HoverMenu onGenerateImage={generateImage} onTextToSpeech={textToSpeech} image={image}>
+                    <HoverMenu onGenerateImage={generateImage} onTextToSpeech={textToSpeech} image={image} setImage={setImage}>
                       <p className="text-2xl font-semibold">{userText}</p>
                     </HoverMenu>
                   </div>
