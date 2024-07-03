@@ -7,6 +7,7 @@ import VerticalMenu from './components/VerticalMenu';
 import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
 import LearningModule from './components/LearningModule';
+import RightSidebar from './components/RightSidebar'; // Import RightSidebar
 
 function App() {
   const [image, setImage] = useState(null);
@@ -59,9 +60,10 @@ function App() {
 
   return (
     <Router>
-      <div className="App flex flex-col items-center justify-start h-screen text-center">
+      <div className="App flex flex-col items-center justify-start bg-customLightGreen h-screen text-center">
         <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
         <VerticalMenu onMenuClick={handleMenuClick} />
+        <RightSidebar /> {/* Add RightSidebar here */}
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/learningmodule" element={<LearningModule />} />

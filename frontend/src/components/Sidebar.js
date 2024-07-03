@@ -17,10 +17,10 @@ const Sidebar = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className={`fixed top-0 left-0 h-full bg-gray-400 text-white p-4 transition-transform transform ${
+      className={`fixed top-0 left-0 h-full bg-customLightGreen text-white p-4 transition-transform transform ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
       }`}
-      style={{ width: '250px', zIndex: '40' }}
+      style={{ width: '200px', zIndex: '40', backgroundColor: '758467'  }}
     >
       <ul className="pt-16 pl-8 text-lg">
         <li className="py-4">
