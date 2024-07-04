@@ -4,6 +4,11 @@
 
 Wonder Sprout uses the power of AI to support children with dyslexia by transforming written text into engaging visuals
 
+## Technology 
+- We use OpenAI DALL.E for our text to image generator
+- React.js and Tailwind.css for front end
+- Flask and Python for the back end
+
 ## Local Development Setup 
 1. Clone the repository 
 ````
