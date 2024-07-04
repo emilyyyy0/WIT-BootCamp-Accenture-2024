@@ -54,7 +54,7 @@ The Learning Module page, with games
 </p>
 
 
-The Dashboard page, 
+The Dashboard page 
 <p align="center">
   <img src="https://github.com/emilyyyy0/WIT-BootCamp-Accenture-2024/blob/main/README_Images/Profile%20Dashboard.png?raw=true" width="500" alt="Main">
   <img src="https://github.com/emilyyyy0/WIT-BootCamp-Accenture-2024/blob/main/README_Images/Profile%20Dashboard%20copy%202.png?raw=true" width="500" alt="Main2">
