@@ -35,6 +35,13 @@ The main page, colour and theme can be adjusted for inclusivity.
   <img src="https://github.com/emilyyyy0/WIT-BootCamp-Accenture-2024/blob/main/README_Images/Main%202.png?raw=true" width="500" alt="Main2">
 </p>
 Input some text into the box, press sumbit and highlight the text. A hover menu will show and users can choose text to speech, generate an image or explain the phonetics
+<p align="center">
+  <img src="https://github.com/emilyyyy0/WIT-BootCamp-Accenture-2024/blob/main/README_Images/Screenshot%202024-07-04%20at%201.19.54%20PM.png?raw=true" width="400" alt="Main">
+</p>
+<p align="center">
+  <img src="https://github.com/emilyyyy0/WIT-BootCamp-Accenture-2024/blob/main/README_Images/Screenshot%202024-07-04%20at%201.20.04%20PM.png?raw=true" width="200" alt="Main2">
+  <img src="https://github.com/emilyyyy0/WIT-BootCamp-Accenture-2024/blob/main/README_Images/Screenshot%202024-07-04%20at%201.19.32%20PM.png?raw=true" width="200" alt="demo">
+</p>
 
 
 The Learning Module page, with games
