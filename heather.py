@@ -7,15 +7,6 @@ import io
 
 app = Flask(__name__, static_folder='frontend/build', static_url_path='/')
 
-# Mock Amplify for local testing
-class MockAmplify:
-    class API:
-        @staticmethod
-        def post(api_name, path, body):
-            # Mock image generation
-            return {"image": generate_image(body["text"])}
-
-Amplify = MockAmplify()
 
 # Local cache directory
 CACHE_DIR = "image_cache"
@@ -26,9 +17,13 @@ if not os.path.exists(CACHE_DIR):
 
 def get_cached_image(text):
     """Check if an image for the given text exists in the local cache."""
-    filename = f"{CACHE_DIR}/{text.lower()}.png"
-    if os.path.exists(filename):
-        with open(filename, "rb") as f:
+    filename_png = f"{CACHE_DIR}/{text.lower()}.png"
+    filename_jpeg = f"{CACHE_DIR}/{text.lower()}.jpeg"
+    if os.path.exists(filename_png):
+        with open(filename_png, "rb") as f:
+            return base64.b64encode(f.read()).decode()
+    elif os.path.exists(filename_jpeg):
+        with open(filename_jpeg, "rb") as f:
             return base64.b64encode(f.read()).decode()
     return None
 
@@ -50,6 +45,7 @@ def generate_image(text):
 def index():
     return send_from_directory(app.static_folder, 'index.html')
 
+
 @app.route("/get_image", methods=["POST"])
 def get_image():
     data = request.json
@@ -65,11 +61,17 @@ def get_image():
 
     # Generate new image
     try:
-        generated_image = Amplify.API.post("imageGenerationApi", "/generate", body={"text": text})["image"]
-        save_to_cache(text, generated_image)
-        return jsonify({"image": generated_image, "source": "api"})
+        # Highlighted change starts here
+        with open('image_cache/loading.gif', "rb") as f:
+            loading_gif = base64.b64encode(f.read()).decode()
+        return jsonify({"image": loading_gif, "source": "generated"})
+        # Highlighted change ends here
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
+
+
 
 @app.route('/<path:path>')
 def static_proxy(path):
@@ -77,3 +79,25 @@ def static_proxy(path):
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
+
+
+# @app.route("/get_image", methods=["POST"])
+# def get_image():
+#     data = request.json
+#     text = data.get("text")
+
+#     if not text:
+#         return jsonify({"error": "No text provided"}), 400
+
+#     # Check local cache
+#     cached_image = get_cached_image(text)
+#     if cached_image:
+#         return jsonify({"image": cached_image, "source": "cache"})
+
+#     # Generate new image
+#     try:
+#         generated_image = 'image_cache/loading.gif'
+#         with open(generated_image, "rb") as f:
+#             return base64.b64encode(f.read()).decode()
+#     except Exception as e:
+#         return jsonify({"error": str(e)}), 500
