@@ -27,3 +27,29 @@ pip install -r requirements.txt
 3. To run the backend run ```python heather.py``` in the terminal. Then click the link generated. 
 4. To run the front end ```cd frontend```. Then to start, run ```npm run build```
 
+
+## Features
+The main page, colour and theme can be adjusted for inclusivity.
+<p align="center">
+  <img src="https://github.com/emilyyyy0/WIT-BootCamp-Accenture-2024/blob/main/README_Images/Main.png?raw=true" width="500" alt="Main">
+  <img src="https://github.com/emilyyyy0/WIT-BootCamp-Accenture-2024/blob/main/README_Images/Main%202.png?raw=true" width="500" alt="Main2">
+</p>
+Input some text into the box, press sumbit and highlight the text. A hover menu will show and users can choose text to speech, generate an image or explain the phonetics
+
+
+The Learning Module page, with games
+<p align="center">
+  <img src="https://github.com/emilyyyy0/WIT-BootCamp-Accenture-2024/blob/main/README_Images/Profile%20Dashboard%20copy.png?raw=true" width="500" alt="Main">
+</p>
+<p align="center">
+  <img src="https://github.com/emilyyyy0/WIT-BootCamp-Accenture-2024/blob/main/README_Images/Main%204.png?raw=true" width="500" alt="Main">
+  <img src="https://github.com/emilyyyy0/WIT-BootCamp-Accenture-2024/blob/main/README_Images/Main%206.png?raw=true" width="500" alt="Main2">
+</p>
+
+
+The Dashboard page, 
+<p align="center">
+  <img src="https://github.com/emilyyyy0/WIT-BootCamp-Accenture-2024/blob/main/README_Images/Profile%20Dashboard.png?raw=true" width="500" alt="Main">
+  <img src="https://github.com/emilyyyy0/WIT-BootCamp-Accenture-2024/blob/main/README_Images/Profile%20Dashboard%20copy%202.png?raw=true" width="500" alt="Main2">
+</p>
+
